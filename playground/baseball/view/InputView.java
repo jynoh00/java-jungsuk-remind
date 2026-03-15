@@ -1,5 +1,8 @@
 package baseball.view;
 
+import baseball.common.ViewMessage;
+
+import javax.swing.text.View;
 import java.util.Scanner;
 
 public class InputView {
@@ -10,12 +13,12 @@ public class InputView {
     }
 
     public String inputAnswerLength() {
-        System.out.println("정답 숫자 길이 입력 : ");
+        System.out.println(ViewMessage.ANSWER_LENGTH_INPUT.getMessage());
         return sc.nextLine().trim();
     }
 
     public String inputGuess() {
-        System.out.println("예측 숫자를 입력 : ");
+        System.out.println(ViewMessage.GUESS_INPUT.getMessage());
         return sc.nextLine().trim();
     }
 
