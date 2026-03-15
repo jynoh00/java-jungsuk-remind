@@ -1,10 +1,9 @@
-package main.java.baseball;
+package baseball;
 
-import main.java.baseball.controller.BaseballController;
-import main.java.baseball.service.GameService;
-import main.java.baseball.util.InputParser;
-import main.java.baseball.view.InputView;
-import main.java.baseball.view.OutputView;
+import baseball.controller.BaseballController;
+import baseball.service.GameService;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package main.java.baseball.model;
+package baseball.model;
 
 public class GameResult {
     private final int userSubmit;

@@ -1,4 +1,4 @@
-package main.java.baseball.service;
+package baseball.service;
 
 public class GameService {
 }

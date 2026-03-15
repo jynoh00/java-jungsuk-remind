@@ -1,11 +1,11 @@
-package main.java.baseball.controller;
+package baseball.controller;
 
-import main.java.baseball.model.Answer;
-import main.java.baseball.model.GameResult;
-import main.java.baseball.service.GameService;
-import main.java.baseball.util.InputParser;
-import main.java.baseball.view.InputView;
-import main.java.baseball.view.OutputView;
+import baseball.model.Answer;
+import baseball.model.GameResult;
+import baseball.service.GameService;
+import baseball.util.InputParser;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 import java.util.List;
 
@@ -25,7 +25,13 @@ public class BaseballController {
                 InputParser.parseAnswerLength(inputView.inputAnswerLength())
         );
 
-        GameResult gameResult = playGame(answer);
+        GameResult gameResult = null;
+        try {
+            gameResult = playGame(answer);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         outputView.showResult(gameResult);
     }
 

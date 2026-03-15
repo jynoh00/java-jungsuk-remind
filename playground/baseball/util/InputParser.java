@@ -1,4 +1,6 @@
-package main.java.baseball.util;
+package baseball.util;
+
+import baseball.common.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,26 +13,26 @@ public class InputParser {
 
     public static int parseAnswerLength(String answerLength) {
         if (answerLength == null || answerLength.isBlank())
-            throw new IllegalArgumentException("입력이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
 
         try {
             int length = Integer.parseInt(answerLength);
             if (length < ANSWER_MIN_LENGTH || length > ANSWER_MAX_LENGTH)
-                throw new IllegalArgumentException(ANSWER_MIN_LENGTH + "~" + ANSWER_MAX_LENGTH + " 사이 숫자를 입력하세요.");
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
 
             return length;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 숫자 형식을 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
     public static List<Integer> parseUserGuess(String userGuess, int answerLength) {
         // 개별 숫자 검사, 중복 숫자 불가
         if (userGuess == null || userGuess.isBlank())
-            throw new IllegalArgumentException("입력이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
 
         if (userGuess.length() != answerLength)
-            throw new IllegalArgumentException("예측 숫자는 " + answerLength + "자리 수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_GUESS_LENGTH.get(answerLength));
 
         List<Integer> result = new ArrayList<>();
         boolean[] isUsed = new boolean[10];
@@ -46,15 +48,15 @@ public class InputParser {
             int number = Integer.parseInt(String.valueOf(c));
 
             if (number < 1 || number > 9)
-                throw new IllegalArgumentException(ANSWER_MIN_LENGTH + "~" + ANSWER_MAX_LENGTH + " 사이 숫자를 입력하세요.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
             if (isUsed[number])
-                throw new IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
 
             isUsed[number] = true;
             return number;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 숫자 형식을 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 }
