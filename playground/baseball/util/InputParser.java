@@ -3,7 +3,9 @@ package baseball.util;
 import baseball.common.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputParser {
     private static final int ANSWER_MIN_LENGTH = 1;
@@ -35,26 +37,23 @@ public class InputParser {
             throw new IllegalArgumentException(ErrorMessage.INVALID_GUESS_LENGTH.get(answerLength));
 
         List<Integer> result = new ArrayList<>();
-        boolean[] isUsed = new boolean[10];
+        Set<Integer> seen = new HashSet<>();
 
         for (int i = 0; i < userGuess.length(); i++)
-            result.add(parseAndValidateDigit(userGuess.charAt(i), isUsed));
+            result.add(parseAndValidateDigit(userGuess.charAt(i), seen));
 
         return result;
     }
 
-    private static int parseAndValidateDigit(char c, boolean[] isUsed) {
+    private static int parseAndValidateDigit(char c, Set<Integer> seen) {
         try {
             int number = Integer.parseInt(String.valueOf(c));
 
             if (number < 1 || number > 9)
                 throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
-            if (isUsed[number])
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+            if (!seen.add(number)) throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
 
-            isUsed[number] = true;
             return number;
-
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }

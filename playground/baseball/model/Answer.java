@@ -1,9 +1,5 @@
 package baseball.model;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Answer {
     private final List<Integer> numbers;
@@ -15,14 +11,13 @@ public class Answer {
     private List<Integer> generate(int answerLength) {
         List<Integer> result = new ArrayList<>();
         Random random = new Random();
-        boolean[] isUsed = new boolean[10]; // 0 ~ 9
+        Set<Integer> seen = new HashSet<>();
 
         while (result.size() < answerLength) {
             int tmp = random.nextInt(9) + 1;
-            if (isUsed[tmp]) continue; // 사용한 숫자면 다시 생성
+            if (!seen.add(tmp)) continue;
 
-            result.add(tmp); // primitive int tmp값 오토 박싱, Integer.valueOf(tmp);
-            isUsed[tmp] = true;
+            result.add(tmp);
         }
 
         return result;
