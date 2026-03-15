@@ -1,7 +1,8 @@
 # TODO
 
 ## Refactor
-- [ ] ErrorMessage enum 도입
+- [x] ErrorMessage enum 도입
+- [ ] 출력 메시지 common/ViewMessage enum 도입
 - [ ] Answer클래스 `generate()`, InputParser클래스 `parseUserGuess()`,` parseAndValidateDigit()` 중복 검증, `Set`으로 변경
 
 ## Backlog
