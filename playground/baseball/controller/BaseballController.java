@@ -20,20 +20,18 @@ public class BaseballController {
         this.gameService = gameService;
     }
 
-    public void run() {
-        try {
-        Answer answer = new Answer(
-                InputParser.parseAnswerLength(inputView.inputAnswerLength())
-        );
+    public void run(boolean isRestart) {
+        if (!isRestart) outputView.showInitMessage();
 
-        GameResult gameResult = null;
-        gameResult = playGame(answer);
+        try {
+        Answer answer = new Answer(InputParser.parseAnswerLength(inputView.inputAnswerLength()));
+        GameResult gameResult = playGame(answer);
 
         outputView.showResult(gameResult);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             outputView.showError(e.getMessage());
             outputView.showRestartMessage();
-            run();
+            run(true);
         }
     }
 

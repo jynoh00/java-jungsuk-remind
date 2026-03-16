@@ -2,7 +2,6 @@ package baseball.view;
 
 import baseball.common.ViewMessage;
 
-import javax.swing.text.View;
 import java.util.Scanner;
 
 public class InputView {
@@ -21,14 +20,4 @@ public class InputView {
         System.out.println(ViewMessage.GUESS_INPUT.getMessage());
         return sc.nextLine().trim();
     }
-
-//    private String answerLengthValidate(String answerLength) throws IllegalArgumentException {
-//        if (answerLength == null || answerLength.isBlank())
-//            throw new IllegalArgumentException("answerLength는 null값 혹은 빈 입력이 될 수 없습니다.");
-//
-//        if (answerLength.matches("\\d+"))
-//            throw new IllegalArgumentException("answerLength에 숫자를 입력해야 합니다.");
-//
-//        return answerLength;
-//    }
 }

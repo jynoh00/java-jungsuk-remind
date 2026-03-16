@@ -9,13 +9,14 @@ public class GameResult {
         this.playTime = playTime;
     }
 
-    /**
-     * userSubmit, playTime 기반 랭크 계산
-     * @return 사용자 점수 반환
-     */
     public String calculateRank() {
+        // 랭크 계산, Rank객체 도입
         return "A";
     }
 
+    public double getPlayTime() {
+        // 걸린 시간 계산 -> double로 반환
+        return 10.0;
+    }
     public int getUserSubmit() { return userSubmit; }
 }

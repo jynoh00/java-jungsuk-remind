@@ -24,6 +24,7 @@ public class Answer {
     }
 
     public int getLength() { return numbers.size(); }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
