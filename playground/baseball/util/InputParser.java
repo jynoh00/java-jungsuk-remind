@@ -29,7 +29,6 @@ public class InputParser {
     }
 
     public static List<Integer> parseUserGuess(String userGuess, int answerLength) {
-        // 개별 숫자 검사, 중복 숫자 불가
         if (userGuess == null || userGuess.isBlank())
             throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
 
@@ -50,7 +49,7 @@ public class InputParser {
             int number = Integer.parseInt(String.valueOf(c));
 
             if (number < 1 || number > 9)
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
             if (!seen.add(number)) throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
 
             return number;
