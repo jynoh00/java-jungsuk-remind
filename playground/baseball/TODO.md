@@ -4,6 +4,8 @@
 - [x] ErrorMessage enum 도입
 - [x] 출력 메시지 common/ViewMessage enum 도입
 - [x] Answer클래스 `generate()`, InputParser클래스 `parseUserGuess()`,` parseAndValidateDigit()` 중복 검증, `Set`으로 변경
+- [ ] GameService의 checkUserSubmit() 메서드 로직 개선
+- [ ] 컨트롤러 playGame() 메서드 과중책임 분리
 
 ## Backlog
 - [x] 게임 전체 기능 초기 구현 (결과 출력 제외)
