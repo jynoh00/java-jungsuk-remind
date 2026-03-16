@@ -2,27 +2,26 @@ package baseball.service;
 
 import baseball.model.Answer;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GameService {
     public List<Integer> checkUserSubmit(List<Integer> userGuess, Answer answer) {
-        int ball = 0, strike = 0, out = 0;
+        List<Integer> answerNumbers = answer.getNumbers();
+        Set<Integer> answerSet = answer.getNumbersToSet();
+
+        int ball = 0, strike = 0;
 
         for (int i = 0; i < userGuess.size(); i++) {
-            // 포함하는 지
-            if (answer.getNumbers().contains(userGuess.get(i))) {
-                ball++;
+            int guess = userGuess.get(i);
 
-                if (Objects.equals(answer.getNumbers().get(i), userGuess.get(i))) {
-                    ball--;
-                    strike++;
-                }
+            if (Objects.equals(answerNumbers.get(i), guess)) {
+                strike++;
+                continue;
             }
+            if (answerSet.contains(guess)) ball++;
         }
 
-        out = answer.getLength() - ball - strike;
-
+        int out = userGuess.size() - (ball + strike);
         return List.of(ball, strike, out);
     }
 

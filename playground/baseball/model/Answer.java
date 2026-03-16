@@ -3,9 +3,11 @@ import java.util.*;
 
 public class Answer {
     private final List<Integer> numbers;
+    private final Set<Integer> numbersToSet;
 
     public Answer(int answerLength) {
         this.numbers = generate(answerLength);
+        this.numbersToSet = new HashSet<>(numbers);
     }
 
     private List<Integer> generate(int answerLength) {
@@ -19,6 +21,7 @@ public class Answer {
 
             result.add(tmp);
         }
+        System.out.println(result);
 
         return result;
     }
@@ -27,5 +30,9 @@ public class Answer {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    public Set<Integer> getNumbersToSet() {
+        return Collections.unmodifiableSet(numbersToSet);
     }
 }
