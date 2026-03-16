@@ -1,6 +1,7 @@
 package baseball.common;
 
 public enum ErrorMessage {
+    ERROR_DEFAULT("[ERROR!]: "),
     BLANK_INPUT("입력이 비어있습니다"),
     INVALID_NUMBER_FORMAT("올바른 숫자 형식을 입력하세요"),
     INVALID_GUESS_LENGTH("%d자리 수를 입력하세요"),
