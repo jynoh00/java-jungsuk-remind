@@ -7,6 +7,7 @@ import baseball.util.InputParser;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class BaseballController {
@@ -36,6 +37,8 @@ public class BaseballController {
     }
 
     private GameResult playGame(Answer answer) {
+        long startTime = Calendar.getInstance().getTimeInMillis();
+
         boolean isGameOver = false;
         int userSubmit = 0;
 
@@ -50,6 +53,8 @@ public class BaseballController {
             userSubmit++;
         }
 
-        return new GameResult(userSubmit, 100L); // playTime 기능 추가
+        long endTime = Calendar.getInstance().getTimeInMillis();
+
+        return new GameResult(userSubmit, endTime - startTime); // playTime 기능 추가
     }
 }

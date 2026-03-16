@@ -14,9 +14,6 @@ public class GameResult {
         return "A";
     }
 
-    public double getPlayTime() {
-        // 걸린 시간 계산 -> double로 반환
-        return 10.0;
-    }
+    public double getPlayTime() { return (double) playTime / 1000; }
     public int getUserSubmit() { return userSubmit; }
 }

@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameService {
-//    private final char BALL = 'B';
-//    private final char STRIKE = 'S';
-//    private final char OUT = 'O';
-
     public List<Integer> checkUserSubmit(List<Integer> userGuess, Answer answer) {
         int ball = 0, strike = 0, out = 0;
 
