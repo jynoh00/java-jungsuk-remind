@@ -21,18 +21,20 @@ public class BaseballController {
     }
 
     public void run() {
+        try {
         Answer answer = new Answer(
                 InputParser.parseAnswerLength(inputView.inputAnswerLength())
         );
 
         GameResult gameResult = null;
-        try {
-            gameResult = playGame(answer);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        gameResult = playGame(answer);
 
         outputView.showResult(gameResult);
+        } catch (Exception e) {
+            outputView.showError(e.getMessage());
+            outputView.showRestartMessage();
+            run();
+        }
     }
 
     private GameResult playGame(Answer answer) {
