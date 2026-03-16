@@ -44,7 +44,10 @@ public class BaseballController {
                     inputView.inputGuess(), answer.getLength()
             );
 
-            //...
+            List<Integer> guessResult = gameService.checkUserSubmit(userGuess, answer);
+            outputView.showSubmitResult(guessResult);
+            if (gameService.checkFinish(guessResult, answer.getLength())) isGameOver = true;
+            userSubmit++;
         }
 
         return new GameResult(userSubmit, 100L); // playTime 기능 추가
