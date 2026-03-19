@@ -12,6 +12,6 @@ public class Application {
         GameService gameService = new GameService();
 
         BaseballController gc = new BaseballController(inputView, outputView, gameService);
-        gc.run(false);
+        gc.run();
     }
 }

@@ -21,20 +21,35 @@ public class BaseballController {
         this.gameService = gameService;
     }
 
-    public void run(boolean isRestart) {
-        if (!isRestart) outputView.showInitMessage();
-
-        try {
-        Answer answer = new Answer(InputParser.parseAnswerLength(inputView.inputAnswerLength()));
-        GameResult gameResult = playGame(answer);
-
-        outputView.showResult(gameResult);
-        } catch (IllegalArgumentException e) {
-            outputView.showError(e.getMessage());
-            outputView.showRestartMessage();
-            run(true);
+    public void run() {
+        outputView.showInitMessage();
+        while (true) {
+            try {
+                Answer answer = new Answer(InputParser.parseAnswerLength(inputView.inputAnswerLength()));
+                GameResult gameResult = playGame(answer);
+                outputView.showResult(gameResult);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.showError(e.getMessage());
+                outputView.showRestartMessage();
+            }
         }
     }
+
+//    public void run(boolean isRestart) {
+//        if (!isRestart) outputView.showInitMessage();
+//
+//        try {
+//            Answer answer = new Answer(InputParser.parseAnswerLength(inputView.inputAnswerLength()));
+//            GameResult gameResult = playGame(answer);
+//
+//            outputView.showResult(gameResult);
+//        } catch (IllegalArgumentException e) {
+//            outputView.showError(e.getMessage());
+//            outputView.showRestartMessage();
+//            run(true);
+//        }
+//    }
 
     private GameResult playGame(Answer answer) {
         long startTime = Calendar.getInstance().getTimeInMillis();
