@@ -24,7 +24,6 @@ public class Answer {
 
             result.add(tmp);
         }
-//        System.out.println(result); // x
 
         return result;
     }
@@ -51,12 +50,4 @@ public class Answer {
     public int getLength() {
         return numbers.size();
     }
-
-//    public List<Integer> getNumbers() {
-//        return Collections.unmodifiableList(numbers);
-//    }
-//
-//    public Set<Integer> getNumbersToSet() {
-//        return Collections.unmodifiableSet(numbersToSet);
-//    }
 }

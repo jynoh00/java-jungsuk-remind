@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println(ViewMessage.RESULT_MESSAGE.get(
                 gameResult.getPlayTime(),
                 gameResult.getUserSubmit(),
-                gameResult.calculateRank()
+                gameResult.getRank()
         ));
     }
 

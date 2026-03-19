@@ -16,9 +16,8 @@ public class GameResult {
         return this;
     }
 
-    public String calculateRank() {
-        // 랭크 계산, Rank객체 도입
-        return "A";
+    public Rank getRank() {
+        return Rank.calculate(userSubmit, getPlayTime());
     }
 
     public void addSubmitCount() {
