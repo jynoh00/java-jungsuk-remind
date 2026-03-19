@@ -29,15 +29,34 @@ public class Answer {
         return result;
     }
 
+    public GuessResult compare(List<Integer> userGuess) {
+        GuessResult guessResult = new GuessResult();
+
+        for (int i = 0; i < userGuess.size(); i++) {
+            int guess = userGuess.get(i);
+
+            if (Objects.equals(guess, numbers.get(i))) {
+                guessResult.addValue(BaseBallConstant.STRIKE.getValue());
+                continue;
+            }
+
+            if (numbersToSet.contains(guess))
+                guessResult.addValue(BaseBallConstant.BALL.getValue());
+        }
+
+        guessResult.calculateOut(userGuess.size());
+        return guessResult;
+    }
+
     public int getLength() {
         return numbers.size();
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
-    public Set<Integer> getNumbersToSet() {
-        return Collections.unmodifiableSet(numbersToSet);
-    }
+//    public List<Integer> getNumbers() {
+//        return Collections.unmodifiableList(numbers);
+//    }
+//
+//    public Set<Integer> getNumbersToSet() {
+//        return Collections.unmodifiableSet(numbersToSet);
+//    }
 }

@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.model.Answer;
 import baseball.model.GameResult;
 import baseball.model.GuessResult;
-import baseball.service.GameService;
+//import baseball.service.GameService;
 import baseball.util.InputParser;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -13,13 +13,18 @@ import java.util.List;
 public class BaseballController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final GameService gameService;
+//    private final GameService gameService;
 
-    public BaseballController(InputView inputView, OutputView outputView, GameService gameService) {
+    public BaseballController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.gameService = gameService;
     }
+
+//    public BaseballController(InputView inputView, OutputView outputView, GameService gameService) {
+//        this.inputView = inputView;
+//        this.outputView = outputView;
+//        this.gameService = gameService;
+//    }
 
     public void run() {
         outputView.showInitMessage();
@@ -52,7 +57,8 @@ public class BaseballController {
         List<Integer> userGuess = InputParser.parseUserGuess(
                 inputView.inputGuess(), answer.getLength()
         );
-        GuessResult guessResult = gameService.checkUserSubmit(userGuess, answer);
+//        GuessResult guessResult = gameService.checkUserSubmit(userGuess, answer);
+        GuessResult guessResult = answer.compare(userGuess);
         outputView.showSubmitResult(guessResult.getResult());
         return guessResult;
     }
