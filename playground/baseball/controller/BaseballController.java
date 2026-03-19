@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.model.Answer;
 import baseball.model.GameResult;
+import baseball.model.GuessResult;
 import baseball.service.GameService;
 import baseball.util.InputParser;
 import baseball.view.InputView;
@@ -35,40 +36,24 @@ public class BaseballController {
         }
     }
 
-//    public void run(boolean isRestart) {
-//        if (!isRestart) outputView.showInitMessage();
-//
-//        try {
-//            Answer answer = new Answer(InputParser.parseAnswerLength(inputView.inputAnswerLength()));
-//            GameResult gameResult = playGame(answer);
-//
-//            outputView.showResult(gameResult);
-//        } catch (IllegalArgumentException e) {
-//            outputView.showError(e.getMessage());
-//            outputView.showRestartMessage();
-//            run(true);
-//        }
-//    }
-
     private GameResult playGame(Answer answer) {
-        long startTime = System.currentTimeMillis();
+        GameResult gameResult = new GameResult();
 
-        boolean isGameOver = false;
-        int userSubmit = 0;
-
-        while (!isGameOver) {
-            List<Integer> userGuess = InputParser.parseUserGuess(
-                    inputView.inputGuess(), answer.getLength()
-            );
-
-            List<Integer> guessResult = gameService.checkUserSubmit(userGuess, answer);
-            outputView.showSubmitResult(guessResult);
-            if (gameService.checkFinish(guessResult, answer.getLength())) isGameOver = true;
-            userSubmit++;
+        while (true) {
+            GuessResult guessResult = playTurn(answer);
+            gameResult.addSubmitCount();
+            if (guessResult.isAllStrike(answer.getLength())) break;
         }
 
-        long endTime = System.currentTimeMillis();
+        return gameResult.gameOver();
+    }
 
-        return new GameResult(userSubmit, endTime - startTime); // playTime 기능 추가
+    private GuessResult playTurn(Answer answer) {
+        List<Integer> userGuess = InputParser.parseUserGuess(
+                inputView.inputGuess(), answer.getLength()
+        );
+        GuessResult guessResult = gameService.checkUserSubmit(userGuess, answer);
+        outputView.showSubmitResult(guessResult.getResult());
+        return guessResult;
     }
 }

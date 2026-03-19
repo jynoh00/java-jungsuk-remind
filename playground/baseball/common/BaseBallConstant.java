@@ -5,9 +5,10 @@ public enum BaseBallConstant {
     STRIKE(1),
     OUT(2),
     SUBMIT_RESULT_SIZE(3),
-    ONE(1),
-    NINE(9),
-    ZERO(0);
+    MIN(1),
+    MAX(9),
+    ZERO(0),
+    MILLIS_PER_SECOND(1000);
 
     private final int value;
 

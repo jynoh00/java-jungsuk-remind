@@ -1,12 +1,19 @@
 package baseball.model;
 
-public class GameResult {
-    private final int userSubmit;
-    private final long playTime;
+import baseball.common.BaseBallConstant;
 
-    public GameResult(int userSubmit, long playTime) {
-        this.userSubmit = userSubmit;
-        this.playTime = playTime;
+public class GameResult {
+    private int userSubmit;
+    private long playTime;
+
+    public GameResult() {
+        this.userSubmit = 0;
+        this.playTime = System.currentTimeMillis();
+    }
+
+    public GameResult gameOver() {
+        playTime = System.currentTimeMillis() - playTime;
+        return this;
     }
 
     public String calculateRank() {
@@ -14,6 +21,15 @@ public class GameResult {
         return "A";
     }
 
-    public double getPlayTime() { return (double) playTime / 1000; }
-    public int getUserSubmit() { return userSubmit; }
+    public void addSubmitCount() {
+        userSubmit++;
+    }
+
+    public double getPlayTime() {
+        return (double) playTime / BaseBallConstant.MILLIS_PER_SECOND.getValue();
+    }
+
+    public int getUserSubmit() {
+        return userSubmit;
+    }
 }

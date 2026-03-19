@@ -1,4 +1,7 @@
 package baseball.model;
+
+import baseball.common.BaseBallConstant;
+
 import java.util.*;
 
 public class Answer {
@@ -16,17 +19,19 @@ public class Answer {
         Set<Integer> seen = new HashSet<>();
 
         while (result.size() < answerLength) {
-            int tmp = random.nextInt(9) + 1;
+            int tmp = random.nextInt(BaseBallConstant.MAX.getValue()) + BaseBallConstant.MIN.getValue();
             if (!seen.add(tmp)) continue;
 
             result.add(tmp);
         }
-        System.out.println(result);
+//        System.out.println(result); // x
 
         return result;
     }
 
-    public int getLength() { return numbers.size(); }
+    public int getLength() {
+        return numbers.size();
+    }
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);

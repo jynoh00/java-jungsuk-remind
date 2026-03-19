@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.Set;
 
 public class InputParser {
-    private static final int ANSWER_MIN_LENGTH = BaseBallConstant.ONE.getValue();
-    private static final int ANSWER_MAX_LENGTH = BaseBallConstant.NINE.getValue();
+    private static final int ANSWER_MIN_LENGTH = BaseBallConstant.MIN.getValue();
+    private static final int ANSWER_MAX_LENGTH = BaseBallConstant.MAX.getValue();
 
-    private InputParser() {}
+    private InputParser() {
+    }
 
     public static int parseAnswerLength(String answerLength) {
         if (answerLength == null || answerLength.isBlank())
