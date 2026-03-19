@@ -1,5 +1,6 @@
 package baseball.util;
 
+import baseball.common.BaseBallConstant;
 import baseball.common.ErrorMessage;
 
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public class InputParser {
-    private static final int ANSWER_MIN_LENGTH = 1;
-    private static final int ANSWER_MAX_LENGTH = 9;
+    private static final int ANSWER_MIN_LENGTH = BaseBallConstant.ONE.getValue();
+    private static final int ANSWER_MAX_LENGTH = BaseBallConstant.NINE.getValue();
 
     private InputParser() {}
 
@@ -48,7 +49,7 @@ public class InputParser {
         try {
             int number = Integer.parseInt(String.valueOf(c));
 
-            if (number < 1 || number > 9)
+            if (number < ANSWER_MIN_LENGTH || number > ANSWER_MAX_LENGTH)
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.get(ANSWER_MIN_LENGTH, ANSWER_MAX_LENGTH));
             if (!seen.add(number)) throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
 
