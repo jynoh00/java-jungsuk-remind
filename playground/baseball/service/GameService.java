@@ -22,6 +22,7 @@ public class GameService {
             if (answerSet.contains(guess)) result.addValue(BaseBallConstant.BALL.getValue());
         }
 
-        return result.outCalculate(userGuess.size());
+        result.calculateOut(userGuess.size());
+        return result;
     }
 }

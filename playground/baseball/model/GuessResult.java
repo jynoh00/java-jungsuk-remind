@@ -12,12 +12,10 @@ public class GuessResult {
         result[index]++;
     }
 
-    public GuessResult outCalculate(int length) {
+    public void calculateOut(int length) {
         result[BaseBallConstant.OUT.getValue()] = length
                 - result[BaseBallConstant.BALL.getValue()]
                 - result[BaseBallConstant.STRIKE.getValue()];
-
-        return this;
     }
 
     public List<Integer> getResult() {
